@@ -17,13 +17,20 @@ if (options.apiKey) {
   process.exit();
 }
 
+console.error(`Missing API Key. Add API key with
+
+  how -a <OpenAI API Key> 
+
+Get a key here: https://platform.openai.com/account/api-keys`)
 // Configure API
 try {
   actions.setupClient()
 } catch (err) {
   console.error(`Missing API Key. Add API key with
 
-  how -a <OpenAI API Key> `)
+  how -a <OpenAI API Key> 
+
+Get a key here: https://platform.openai.com/account/api-keys`)
   process.exit(1);
 }
 

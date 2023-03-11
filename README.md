@@ -1,11 +1,11 @@
-# how-cli
+# how-ai
 
 Get CLI commands and coding tips from OpenAI Codex right in your console.
 
 This tool uses OpenAI Codex as a remote backend and requires users to have an internet connection
 and OpenAI API key.
 
-> :bulb: **OpenAI codex is free as of 03/10/2023 .**
+> :bulb: **OpenAI model API is free with limits for personal users as of 03/10/2023.**
 
 ##### Who is this for?
 
@@ -19,10 +19,10 @@ People who don't feel comfortable using OpenAI Codex or are concerned about
 
 ## Quickstart
 
-1. Install `how-cli`
+1. Install `how-ai`
 
     ```shell
-    npm install how-cli
+    npm install -g how-ai
     ```
 
 1. Sign up for a free OpenAI platform account [here](https://platform.openai.com/overview).
