@@ -14,10 +14,15 @@ export class ApiClient {
       const response = await this.client.createChatCompletion({
         model: CHAT_MODEL,
         messages: [
-          { 'role': 'system', 'content': `You only respond with terminal commands for ${platform} systems. You never return natural language, just executable code.` },
+          { 'role': 'system', 'content': `You only respond with terminal commands for ${platform} systems. Just respond with executable code, no explanation.` },
           { 'role': 'user', 'content': `CLI command for this: check if google.com can be reached` },
           { 'role': 'assistant', 'content': `ping www.google.com` },
-          { 'role': 'user', 'content': `CLI command for this: ${prompt}?` },
+          { 'role': 'user', 'content': `good. CLI command for this: list all the aks cluster names` },
+          { 'role': 'assistant', 'content': "You can use the following command to list all the AKS clusters in your subscription:```az aks list --output table--query '[].name'``` This will display a table format output with only the AKS cluster names." },
+          { 'role': 'user', 'content': 'no. only include code, no explanation.' },
+          { 'role': 'assistant', 'content': `az aks list--query '[].name'` },
+          { 'role': 'user', 'content': 'good.' },
+          { 'role': 'user', 'content': `CLI command for this: ${prompt} ? ` },
         ],
         max_tokens: 200,
       });

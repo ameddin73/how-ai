@@ -45,7 +45,8 @@ export async function command(prompt) {
   }
   try {
     // Get command from OpenAI
-    const command = await client.getCommand(prompt);
+    var command = await client.getCommand(prompt);
+    command = command.replace(/(^|[^`])`[\s\S]*?`/g, '$1');
 
     // Create readline
     const rl = readline.createInterface({
@@ -56,7 +57,7 @@ export async function command(prompt) {
 
     // Write command
     rl.prompt();
-    rl.write(`${command}`);
+    rl.write(` ${command}`);
 
     // Exec command
     rl.once('line', function(line) {
