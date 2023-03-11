@@ -1,4 +1,4 @@
-# how-ai
+# How
 
 Get CLI commands and coding tips from OpenAI Codex right in your console.
 
@@ -19,14 +19,14 @@ People who don't feel comfortable using OpenAI Codex or are concerned about
 
 ## Quickstart
 
+1. Sign up for a free OpenAI platform account [here](https://platform.openai.com/overview).
+1. Get an OpenAI API key [here](https://platform.openai.com/account/api-keys).
 1. Install `how-ai`
 
     ```shell
     npm install -g how-ai
     ```
 
-1. Sign up for a free OpenAI platform account [here](https://platform.openai.com/overview).
-1. Get an OpenAI API key [here](https://platform.openai.com/account/api-keys).
 1. Configure `how` with your API key.
 
     ```shell
