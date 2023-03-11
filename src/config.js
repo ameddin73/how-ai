@@ -9,7 +9,7 @@ const models = {
   codeDavinci: 'code-davinci-002',
   gptThreeFive: 'gpt-3.5-turbo',
 }
-export const CODE_MODEL = models.codeDavinci;
+export const CODE_MODEL = models.textDavinci;
 export const CHAT_MODEL = models.gptThreeFive;
 
 const homeDir = os.homedir();

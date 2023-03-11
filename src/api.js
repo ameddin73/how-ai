@@ -31,7 +31,6 @@ export class ApiClient {
       command = command.replace(/[\n\r]/g, "");
       return command
     } catch (err) {
-      console.dir(err)
       throw err;
     }
   }
@@ -40,7 +39,8 @@ export class ApiClient {
     try {
       const response = await this.client.createCompletion({
         model: CODE_MODEL,
-        prompt: `write a code snippet in ${language} to ${prompt}`,
+        prompt: `write a code snippet in the programming language ${language} that does the following: ${prompt}.
+                Include code comments that help to explain.`,
         max_tokens: 1000,
       });
 
@@ -48,7 +48,7 @@ export class ApiClient {
       snippet = snippet.replace(/^\s*\n|\n\s*$/g, "");
       return snippet
     } catch (err) {
-      throw err;
+      throw err
     }
   }
 }
