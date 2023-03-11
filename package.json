@@ -6,6 +6,9 @@
   "author": "Alex Meddin",
   "license": "MIT",
   "type": "module",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "release": {
     "branches": [
       "main"
