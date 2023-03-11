@@ -12,6 +12,9 @@ program.parse();
 const options = program.opts();
 const prompt = program.args.join(' ');
 
+// Check version
+await actions.update();
+
 // Set api key
 if (options.apiKey) {
   actions.apiKey(options.apiKey);
