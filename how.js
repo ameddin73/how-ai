@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node --no-warnings
 
 import { program } from 'commander';
 import * as actions from './src/actions.js';
@@ -6,6 +6,7 @@ import * as actions from './src/actions.js';
 program
   .option('-a, --api-key <OpenAI API key>', 'configure how to use your API key')
   .option('-c, --code <language>', 'generate code snippet instead of a command prompt')
+  .option('-v, --version', 'print version information about how')
 
 program.parse();
 const options = program.opts();
@@ -14,6 +15,11 @@ const prompt = program.args.join(' ');
 // Set api key
 if (options.apiKey) {
   actions.apiKey(options.apiKey);
+  process.exit();
+}
+// Print version
+if (options.version) {
+  actions.version();
   process.exit();
 }
 
