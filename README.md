@@ -82,7 +82,7 @@ Options:
     how get current user
     ```
 
-1. Press `return` to accept or `ctrl-c` to cancel.
+1. Press `return` to run the command or `escape` to cancel.
 
     ```shell
     $ how get current user
