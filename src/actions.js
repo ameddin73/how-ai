@@ -46,7 +46,7 @@ export async function command(prompt) {
   try {
     // Get command from OpenAI
     var command = await client.getCommand(prompt);
-    command = command.replace(/(^|[^`])`[\s\S]*?`/g, '$1');
+    command = extractCode(command);
 
     // Create readline
     const rl = readline.createInterface({
@@ -106,3 +106,11 @@ function getCommandList(command) {
   })
   return cmds;
 }
+
+function extractCode(sentence) {
+  if (!sentence.includes("`")) return sentence;
+  const regex = /`((?:\\`|[^`])+?)`/;
+  const matches = regex.exec(sentence);
+  return matches ? matches[1] : "";
+}
+

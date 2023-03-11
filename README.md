@@ -5,8 +5,8 @@ Generate CLI commands and code snippets from natural language right in your term
 ##### Examples
 
 ```shell
-$ how list all the aks cluster names
-$ az aks list --query '[].name'
+$ how get the cluster name of every aks cluster that has a nodepool size of 3
+$ az aks list --query "[?agentPoolProfiles[?count==\`3\`]].name"
 [
   "cluster1",
   "cluster2",
