@@ -42,11 +42,7 @@ export async function command(prompt) {
   }
   try {
     // Get command from OpenAI
-    // const command = await client.getCommand(prompt);
-    // const command = 'az -v'
-    const command = `az group list --query "[?contains(name, 'alex')].name" --output tsv`
-    // const command = `az group list --query "[?contains(name, 'alex')].name" --output tsv`
-    // const command = 'ls -la'
+    const command = await client.getCommand(prompt);
 
     // Create readline
     const rl = readline.createInterface({
