@@ -22,7 +22,7 @@ export class ApiClient {
           { 'role': 'user', 'content': 'no. only include code, no explanation.' },
           { 'role': 'assistant', 'content': `az aks list--query '[].name'` },
           { 'role': 'user', 'content': 'good.' },
-          { 'role': 'user', 'content': `CLI command for this: ${prompt} ? ` },
+          { 'role': 'user', 'content': `CLI command for this: ${prompt}. Include no explanation or natural language. Just code. Do not include templated variables.` },
         ],
         max_tokens: 200,
       });
