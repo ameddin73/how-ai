@@ -92,7 +92,8 @@ export async function command(prompt) {
 }
 
 function getCommandList(command) {
-  const regex = /"[^"]+"|\S+/g;
+  // Capture tokens
+  const regex = /\$\([^)]+\)|"[^"]+"|\S+/g;
   const cmds = command.match(regex);
 
   // Enumerate env vars
