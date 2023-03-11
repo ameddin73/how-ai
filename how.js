@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { program } from 'commander';
 import * as actions from './src/actions.js';
 
@@ -22,6 +24,11 @@ try {
   console.error(`Missing API Key. Add API key with
 
   how -a <OpenAI API Key> `)
+  process.exit(1);
+}
+
+if (prompt === '') {
+  program.outputHelp();
   process.exit(1);
 }
 

@@ -1,7 +1,7 @@
 {
   "name": "how-ai",
   "bin": {
-    "how": "node ./how.js"
+    "how": "./how.js"
   },
   "author": "Alex Meddin",
   "license": "MIT",
