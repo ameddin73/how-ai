@@ -1,4 +1,8 @@
 import { Configuration, OpenAIApi } from "openai";
+import os from 'os';
+import { CHAT_MODEL, CODE_MODEL } from "./config.js";
+
+const platform = os.platform();
 
 export class ApiClient {
   constructor(apiKey) {
@@ -7,17 +11,22 @@ export class ApiClient {
 
   async getCommand(prompt) {
     try {
-      const response = await this.client.createCompletion({
-        // model: "ada-code-search-code",
-        model: "text-davinci-003",
-        prompt: `cli command for:  ${prompt}`,
+      const response = await this.client.createChatCompletion({
+        model: CHAT_MODEL,
+        messages: [
+          { 'role': 'system', 'content': `You only respond with terminal commands for ${platform} systems. You never return natural language, just executable code.` },
+          { 'role': 'user', 'content': `CLI command for this: check if google.com can be reached` },
+          { 'role': 'assistant', 'content': `ping www.google.com` },
+          { 'role': 'user', 'content': `CLI command for this: ${prompt}?` },
+        ],
         max_tokens: 200,
       });
 
-      var command = response.data.choices[0].text;
+      var command = response.data.choices[0].message.content;
       command = command.replace(/[\n\r]/g, "");
       return command
     } catch (err) {
+      console.dir(err)
       throw err;
     }
   }
@@ -25,8 +34,7 @@ export class ApiClient {
   async getCode(language, prompt) {
     try {
       const response = await this.client.createCompletion({
-        // model: "ada-code-search-code",
-        model: "text-davinci-003",
+        model: CODE_MODEL,
         prompt: `write a code snippet in ${language} to ${prompt}`,
         max_tokens: 1000,
       });
