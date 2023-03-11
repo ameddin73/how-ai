@@ -42,18 +42,11 @@ export async function command(prompt) {
   }
   try {
     // Get command from OpenAI
-    const command = await client.getCommand(prompt);
-    const cmds = command.split(' ');
-
-    // Enumerate env vars
-    cmds.forEach(function(str) {
-      const match = str.match(/\$([A-Za-z0-9_]+)|\${([A-Za-z0-9_]+)}/);
-      if (match) {
-        const varName = match[1] || match[2];
-        return process.env[varName];
-      }
-      return str;
-    })
+    // const command = await client.getCommand(prompt);
+    // const command = 'az -v'
+    const command = `az group list --query "[?contains(name, 'alex')].name" --output tsv`
+    // const command = `az group list --query "[?contains(name, 'alex')].name" --output tsv`
+    // const command = 'ls -la'
 
     // Create readline
     const rl = readline.createInterface({
@@ -64,22 +57,52 @@ export async function command(prompt) {
 
     // Write command
     rl.prompt();
-    rl.write(` ${command} `);
+    rl.write(`${command}`);
 
     // Exec command
-    rl.on('line', function() {
-      // Add to history
-      rl.history.push(input);
+    rl.once('line', function(line) {
+      // Write command list
+      const cmds = getCommandList(line);
+
       // Create spawn
-      spawn(cmds[0], cmds.slice(1), {
+      const child = spawn(cmds[0], cmds.slice(1), {
         stdio: 'inherit',
         env: {
           ...process.env,
-        }
+        },
+        shell: true,
       });
-      process.exit(0);
-    })
+
+      child.on('close', (code) => {
+        process.exit(code);
+      });
+    });
+
+    // Close on escape
+    rl.input.on('keypress', function(_, key) {
+      // Close the readline interface
+      if (key.name == 'escape') {
+        rl.write('\r');
+        rl.close();
+      }
+    });
   } catch (err) {
     throw err;
   }
+}
+
+function getCommandList(command) {
+  const regex = /"[^"]+"|\S+/g;
+  const cmds = command.match(regex);
+
+  // Enumerate env vars
+  cmds.forEach(function(str) {
+    const match = str.match(/\$([A-Za-z0-9_]+)|\${([A-Za-z0-9_]+)}/);
+    if (match) {
+      const varName = match[1] || match[2];
+      return process.env[varName];
+    }
+    return str;
+  })
+  return cmds;
 }
