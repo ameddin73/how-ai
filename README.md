@@ -2,7 +2,7 @@
 
 Generate CLI commands and code snippets from natural language right in your terminal.
 
-##### Examples
+### Examples
 
 ```shell
 $ how get the cluster name of every aks cluster that has a nodepool size of 3
@@ -31,7 +31,7 @@ public class PrintRandomString {
 }
 ```
 
-##### Who is this for?
+### Who is this for?
 
 People who want an easy way to get complex CLI commands without Googling for hours or remembering
 a million query syntaxes.
@@ -74,7 +74,7 @@ Options:
   -h, --help                      display help for command
 ```
 
-#### Running commands
+### Running commands
 
 1. Invoke How with the command description.
 
@@ -90,7 +90,7 @@ Options:
     alex
     ```
 
-#### Generating Code
+### Generating Code
 
 1. Invoke How with a description of the desired code and set the `--code` or `-c` flag
 to the language you want.
@@ -115,9 +115,9 @@ to the language you want.
     return session
     ```
 
-### Limitations
+## Limitations
 
-##### API Limits
+#### API Limits
 
 OpenAI strictly limits API requests on a per-model basis.
 [API limits for OpenAI](https://platform.openai.com/docs/guides/rate-limits).
@@ -128,7 +128,7 @@ To see which model How uses, run
 how -v
 ```
 
-##### Envronment variables
+#### Envronment variables
 
 Executing the command directly from How doesn't enumerate environment variables. Instead,
 copy the command.
@@ -142,7 +142,7 @@ $USER
 How is designed to generate commands avoiding environment variables where possible, but doesn't
 always.
 
-##### Correctness
+#### Correctness
 
 How is backed by OpenAI GPT-3, a generative LLM. Generative language models are unreliable by nature,
 and may produce incorrect or invalid responses.
