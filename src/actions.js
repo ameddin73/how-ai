@@ -1,10 +1,13 @@
-import { key, CHAT_MODEL, CODE_MODEL } from './config.js';
+import { key, CHAT_MODEL, CODE_MODEL, getVersion, checkForUpdates } from './config.js';
 import { ApiClient } from './api.js';
-import packageJson from '../package.json' assert { type: 'json' };
 import readline from 'readline';
 import { spawn } from 'child_process';
 
 var client;
+
+export async function update() {
+  return checkForUpdates();
+}
 
 export function apiKey(apiKey) {
   key.set(apiKey);
@@ -19,7 +22,7 @@ export function setupClient() {
 }
 
 export function version() {
-  console.log(`Version: ${packageJson.version}
+  console.log(`Version: ${getVersion()}
 Command Model: ${CHAT_MODEL} 
 Code Model: ${CODE_MODEL} `);
 }
