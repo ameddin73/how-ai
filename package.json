@@ -1,7 +1,18 @@
 {
+  "name": "how-cli",
+  "bin": {
+    "how": "./how.js"
+  },
+  "author": "Alex Meddin",
+  "license": "MIT",
+  "type": "module",
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
   "dependencies": {
     "commander": "^10.0.0",
     "openai": "^3.2.1"
-  },
-  "type": "module"
+  }
 }
