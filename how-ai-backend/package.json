@@ -13,7 +13,8 @@
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/git"
-    ]
+    ],
+    "tagFormat": "server-v${version}"
   },
   "repository": {
     "type": "git",

@@ -30,7 +30,6 @@ jobs:
         with:
           branch: main
           working_directory: ./how-ai-backend
-          tag_format: server-v{version}
           extra_plugins: |
             @semantic-release/commit-analyzer
             @semantic-release/git
