@@ -1,22 +1,7 @@
 {
-  "name": "how-ai",
-  "bin": {
-    "how": "./how.js"
-  },
-  "author": "Alex Meddin",
-  "license": "MIT",
-  "type": "module",
-  "engines": {
-    "node": ">=14.0.0"
-  },
-  "release": {
-    "branches": [
-      "main"
-    ]
-  },
-  "dependencies": {
-    "axios": "^1.3.4",
-    "commander": "^10.0.0",
-    "openai": "^3.2.1"
-  }
+  "name": "how",
+  "workspaces": [
+    "how-ai",
+    "how-ai-backend"
+  ]
 }
