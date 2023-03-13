@@ -68,9 +68,8 @@ export async function checkForUpdates() {
     const installedVersion = getVersion();
 
     if (latestVersion !== installedVersion) {
-      console.log(`New version available: ${latestVersion}`);
-    } else {
-      console.log('Package is up to date');
+      //\x1b[33m sets the string output to yellow and \x1b[0m resets the console after the output
+      console.log('\x1b[33m%s\x1b[0m', `New version available: ${latestVersion}`);
     }
   } catch (error) {
     console.error(`Error checking for updates: ${error.message}`);
