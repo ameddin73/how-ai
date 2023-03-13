@@ -1,0 +1,42 @@
+{
+  "name": "how-ai",
+  "bin": {
+    "how": "how.js"
+  },
+  "author": "Alex Meddin",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "dependencies": {
+    "axios": "^1.3.4",
+    "commander": "^10.0.0",
+    "openai": "^3.2.1"
+  },
+  "description": "Generate CLI commands and code snippets from natural language right in your terminal.",
+  "main": "how.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "how -v"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ameddin73/how-ai.git"
+  },
+  "keywords": [
+    "cli",
+    "ai",
+    "gpt",
+    "terminal"
+  ],
+  "bugs": {
+    "url": "https://github.com/ameddin73/how-ai/issues"
+  },
+  "homepage": "https://github.com/ameddin73/how-ai#readme"
+}
