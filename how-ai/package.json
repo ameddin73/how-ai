@@ -26,10 +26,6 @@
   },
   "description": "Generate CLI commands and code snippets from natural language right in your terminal.",
   "main": "how.js",
-  "devDependencies": {},
-  "scripts": {
-    "test": "how -v"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ameddin73/how-ai.git"
