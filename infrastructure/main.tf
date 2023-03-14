@@ -1,10 +1,10 @@
 resource "azurerm_resource_group" "how-ai" {
   name     = "how-ai-rg"
-  location = "West Europe"
+  location = "West US"
 }
 
 resource "azurerm_storage_account" "how-ai" {
-  name                     = "linuxfunctionappsa"
+  name                     = "howaisa"
   resource_group_name      = azurerm_resource_group.how-ai.name
   location                 = azurerm_resource_group.how-ai.location
   account_tier             = "Standard"
@@ -47,7 +47,7 @@ resource "azurerm_cognitive_account" "how-ai" {
   resource_group_name = azurerm_resource_group.how-ai.name
   kind                = "OpenAI"
 
-  sku_name = "S0"
+  sku_name = "F1"
 }
 
 resource "azurerm_role_assignment" "how-ai-cognitive-user" {
