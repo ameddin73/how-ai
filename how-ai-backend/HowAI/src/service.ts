@@ -1,9 +1,13 @@
 import { ApiClient } from './api.js';
+import { API_KEY } from './config.js';
 
 var client: ApiClient;
 
 export function setupClient() {
-  client = new ApiClient()
+  if (!API_KEY) {
+    throw new Error('missing API key')
+  }
+  client = new ApiClient(API_KEY)
 }
 
 export async function code(language: string, prompt: string) {
