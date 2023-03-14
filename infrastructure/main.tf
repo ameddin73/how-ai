@@ -29,33 +29,10 @@ resource "azurerm_linux_function_app" "how-ai" {
   service_plan_id            = azurerm_service_plan.how-ai.id
 
   site_config {}
-
-  identity {
-    type = "SystemAssigned"
-  }
 }
 
 resource "azurerm_app_service_source_control" "how-ai" {
   app_id   = azurerm_linux_function_app.how-ai.id
-  repo_url = "https://github.com/ameddin73/how-ai"
+  repo_url = "https://github.com/ameddin73/how-ai/tree/main/how-ai-backend"
   branch   = "main"
-}
-
-resource "azurerm_cognitive_account" "how-ai" {
-  name                = "how-ai-account"
-  location            = azurerm_resource_group.how-ai.location
-  resource_group_name = azurerm_resource_group.how-ai.name
-  kind                = "OpenAI"
-
-  sku_name = "F1"
-}
-
-resource "azurerm_role_assignment" "how-ai-cognitive-user" {
-  for_each = {
-    "user"     = data.azurerm_client_config.current.object_id,
-    "function" = azurerm_linux_function_app.how-ai.identity[0].principal_id
-  }
-  scope                = azurerm_storage_account.how-ai.id
-  role_definition_name = "Cognitive Services User"
-  principal_id         = each.value
 }
