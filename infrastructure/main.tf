@@ -76,5 +76,9 @@ resource "azurerm_linux_function_app" "how-ai" {
 
   key_vault_reference_identity_id = azurerm_user_assigned_identity.how-ai.id
 
-  site_config {}
+  site_config {
+    application_stack {
+      node_version = "16"
+    }
+  }
 }
