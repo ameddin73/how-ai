@@ -1,7 +1,8 @@
-import { AzureFunction, Context, HttpRequest } from "@azure/functions"
+import { Context, HttpRequest } from "@azure/functions"
 import { code, command, setupClient } from "./src/service";
+import { CHAT_MODEL, CODE_MODEL } from "./src/config.js";
 
-const howAI: AzureFunction = async function(context: Context, req: HttpRequest): Promise<void> {
+export default async function(context: Context, req: HttpRequest): Promise<void> {
   if (req.body) {
   } else {
     context.res = { status: 400, body: 'No request body.' };
@@ -35,10 +36,17 @@ const howAI: AzureFunction = async function(context: Context, req: HttpRequest):
         context.res = { status: 500, error }
       }
       break;
+    case 'version':
+      context.res = {
+        body: {
+          chat: CHAT_MODEL,
+          code: CODE_MODEL,
+        }
+      };
+      console.log(context.res)
+      break;
     default:
       context.res = { status: 404, body: 'Page not found.' };
       break;
   }
 };
-
-export default howAI;

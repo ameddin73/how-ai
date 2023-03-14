@@ -1,38 +1,33 @@
-import { key, CHAT_MODEL, CODE_MODEL, getVersion, checkForUpdates } from './config.js';
-import { ApiClient } from './api.js';
+import os from 'os';
+import axios from 'axios';
 import readline from 'readline';
 import { spawn } from 'child_process';
-
-var client;
+import { SERVER_HOST, getVersion, checkForUpdates } from './config.js';
 
 export async function update() {
   return checkForUpdates();
 }
 
-export function apiKey(apiKey) {
-  key.set(apiKey);
-}
-
-export function setupClient() {
-  const apiKey = key.get();
-  if (!apiKey) {
-    throw new Error('missing API key')
+export async function version() {
+  console.log(`Version: ${getVersion()}`);
+  try {
+    const models = await axios.get(`${SERVER_HOST}/api/HowAI?type=version`);
+    console.log(`Command Model: ${models.data.chat}
+Code Model: ${models.data.code}`);
+  } catch (err) {
+    throw err;
   }
-  client = new ApiClient(apiKey)
-}
-
-export function version() {
-  console.log(`Version: ${getVersion()}
-Command Model: ${CHAT_MODEL} 
-Code Model: ${CODE_MODEL} `);
 }
 
 export async function code(language, prompt) {
-  if (!client) {
-    throw new Error('client not configured')
-  }
   try {
-    const snippet = await client.getCode(language, prompt);
+    const snippet = await axios.post({
+      url: `${SERVER_HOST}/api/HowAI?type=code`,
+      data: {
+        language,
+        prompt
+      }
+    });
     console.log(snippet);
   } catch (err) {
     throw err;
@@ -40,12 +35,15 @@ export async function code(language, prompt) {
 }
 
 export async function command(prompt) {
-  if (!client) {
-    throw new Error('client not configured')
-  }
   try {
     // Get command from OpenAI
-    var command = await client.getCommand(prompt);
+    var command = await axios.post({
+      url: `${SERVER_HOST}/api/HowAI?type=command`,
+      data: {
+        platform: os.platform(),
+        prompt
+      }
+    });
     command = extractCode(command);
 
     // Create readline
@@ -57,7 +55,7 @@ export async function command(prompt) {
 
     // Write command
     rl.prompt();
-    rl.write(` ${command}`);
+    rl.write(` ${command} `);
 
     // Exec command
     rl.once('line', function(line) {
