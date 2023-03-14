@@ -103,6 +103,9 @@ dist
 # TernJS port file
 .tern-port
 
+# Terraform
+/infrastructure/.terraform
+
 # Functions
 bin
 obj

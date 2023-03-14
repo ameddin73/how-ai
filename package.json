@@ -1,5 +1,9 @@
 {
   "name": "how",
+  "scripts": {
+    "tf-dev": "cd infrastructure && terraform init -backend-config 'storage_account_name=ameddin73devtfstate' && terraform apply -var-file variables/dev.tfvars.json",
+    "tf-prd": "cd infrastructure && terraform init -backend-config 'storage_account_name=ameddin73prdtfstate' && terraform apply -var-file variables/prd.tfvars.json"
+  },
   "workspaces": [
     "how-ai",
     "how-ai-backend"
