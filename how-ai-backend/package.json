@@ -1,10 +1,13 @@
 {
   "name": "how-ai-backend",
   "description": "Server code for how-ai.",
-  "main": "index.js",
-  "devDependencies": {},
+  "main": "HowAI/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prestart": "npm run watch &",
+    "start": "func start",
+    "test": "echo \"No tests yet...\""
   },
   "release": {
     "branches": [
@@ -25,5 +28,15 @@
   "bugs": {
     "url": "https://github.com/ameddin73/how-ai/issues"
   },
-  "homepage": "https://github.com/ameddin73/how-ai#readme"
+  "homepage": "https://github.com/ameddin73/how-ai#readme",
+  "dependencies": {
+    "@azure/functions": "^3.5.0",
+    "@types/node": "^18.15.2"
+  },
+  "devDependencies": {
+    "@azure/functions": "^3.0.0",
+    "@types/node": "16.x",
+    "azure-functions-core-tools": "^4.x",
+    "typescript": "^4.0.0"
+  }
 }
