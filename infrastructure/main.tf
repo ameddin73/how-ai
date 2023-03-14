@@ -33,10 +33,12 @@ resource "azurerm_linux_function_app" "how-ai" {
   identity {
     type = "SystemAssigned"
   }
+}
 
-  app_settings = {
-    API_KEY = "",
-  }
+resource "azurerm_app_service_source_control" "how-ai" {
+  app_id   = azurerm_linux_function_app.how-ai.id
+  repo_url = "https://github.com/ameddin73/how-ai"
+  branch   = "main"
 }
 
 resource "azurerm_cognitive_account" "how-ai" {

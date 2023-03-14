@@ -4,8 +4,8 @@ import { CHAT_5_SHOT, CHAT_MODEL, CODE_MODEL } from "./config.js";
 export class ApiClient {
   client: OpenAIApi;
 
-  constructor(apiKey: string) {
-    this.client = getClient(apiKey);
+  constructor() {
+    this.client = getClient();
   }
 
   async getCommand(platform: string, prompt: string) {
@@ -47,8 +47,8 @@ export class ApiClient {
 }
 
 
-function getClient(apiKey: string) {
-  const configuration = new Configuration({ apiKey });
+function getClient() {
+  const configuration = new Configuration();
   return new OpenAIApi(configuration);
 }
 

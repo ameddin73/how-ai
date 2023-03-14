@@ -3,5 +3,9 @@
   "workspaces": [
     "how-ai",
     "how-ai-backend"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/ameddin73/how-ai/issues"
+  },
+  "homepage": "https://github.com/ameddin73/how-ai#readme"
 }
