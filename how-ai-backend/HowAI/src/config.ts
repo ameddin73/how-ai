@@ -4,7 +4,7 @@ export const CHAT_MODEL = "gpt-3.5-turbo";
 export const CODE_MODEL = "text-davinci-003";
 export const API_KEY = process.env["APIKEY"];
 
-export const CHAT_5_SHOT: Array<ChatCompletionRequestMessage> = [
+export const CHAT_TRAINING: Array<ChatCompletionRequestMessage> = [
   {
     role: 'system', content: 'Respond with a terminal commands only. Include no explanation or natural language.\
     Do not include templated variables for this. Avoid subshells.' },
@@ -18,4 +18,6 @@ export const CHAT_5_SHOT: Array<ChatCompletionRequestMessage> = [
   { role: 'assistant', content: 'az storage blob list --account-name deveosterraformstate --container-name deveosclusters --prefix alex' },
   { role: 'user', content: 'grep all files recursively that have a string quoted by backticks and a valid URL in it' },
   { role: 'assistant', content: "grep -rE '`.*`|https?://[^\s\"]+' ." },
+  { role: 'user', content: 'say good job out loud' },
+  { role: 'assistant', content: 'say "good job"' },
 ]

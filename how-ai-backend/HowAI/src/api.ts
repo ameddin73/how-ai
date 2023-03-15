@@ -1,5 +1,5 @@
 import { Configuration, OpenAIApi } from "openai";
-import { CHAT_5_SHOT, CHAT_MODEL, CODE_MODEL } from "./config.js";
+import { CHAT_TRAINING, CHAT_MODEL, CODE_MODEL } from "./config.js";
 
 export class ApiClient {
   client: OpenAIApi;
@@ -14,7 +14,7 @@ export class ApiClient {
         model: CHAT_MODEL,
         messages: [
           { role: 'system', content: `Respond with terminal commands for ${platform} systems.` },
-          ...CHAT_5_SHOT,
+          ...CHAT_TRAINING,
           { role: 'user', content: `${prompt}` },
         ],
         max_tokens: 200,
