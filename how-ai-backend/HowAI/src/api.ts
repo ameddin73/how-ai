@@ -8,6 +8,32 @@ export class ApiClient {
     this.client = getClient(apiKey);
   }
 
+  async moderate(content: string): Promise<string | null> {
+    try {
+      const response = await this.client.createModeration({
+        input: content,
+      });
+
+      const flags = [];
+      if (response.data.results[0].flagged) {
+        const categories = response.data.results[0].categories;
+        Object.keys(categories).forEach(key => {
+          if (categories[key]) flags.push(key);
+        });
+      }
+      console.debug(flags);
+
+      if (flags.length > 0) {
+        return `Sorry, that prompt violated the OpenAI usage policies on ${flags}.
+
+Read more here: https://openai.com/policies/usage-policies`;
+      }
+    } catch (err) {
+      throw err;
+    }
+    return null;
+  }
+
   async getCommand(platform: string, prompt: string) {
     try {
       const response = await this.client.createChatCompletion({

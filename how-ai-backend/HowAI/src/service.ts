@@ -14,6 +14,14 @@ export async function code(language: string, prompt: string) {
   if (!client) {
     throw new Error('client not configured')
   }
+
+  // Moderate content
+  try {
+    const flags = await client.moderate(`${language}. ${prompt}`);
+    if (flags) return flags;
+  } catch (err) {
+    throw err;
+  }
   return client.getCode(language, prompt);
 }
 
@@ -22,12 +30,24 @@ export async function command(platform: string, prompt: string) {
     throw new Error('client not configured')
   }
 
+  // Moderate content
+  try {
+    const flags = await client.moderate(`${platform}. ${prompt}`);
+    if (flags) return {
+      flags
+    };
+  } catch (err) {
+    throw err;
+  }
+
   // Get command from OpenAI
   var command = await client.getCommand(platform, prompt);
 
   // Clean command
   command = extractCode(command);
-  return command;
+  return {
+    command,
+  };
 }
 
 function extractCode(sentence: string | undefined) {

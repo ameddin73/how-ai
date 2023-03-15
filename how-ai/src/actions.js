@@ -42,7 +42,13 @@ export async function command(prompt) {
         prompt
       },
     );
-    const command = extractCode(response.data);
+
+    // Check if moderated
+    if (response.data.flags) {
+      console.error(response.data.flags);
+      process.exit(1);
+    }
+    const command = extractCode(response.data.command);
 
     copy(command);
     console.log('$ \x1b[33m%s\x1b[0m copied to clipboard!', command)
