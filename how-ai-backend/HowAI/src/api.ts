@@ -39,7 +39,7 @@ Read more here: https://openai.com/policies/usage-policies`;
       const response = await this.client.createChatCompletion({
         model: CHAT_MODEL,
         messages: [
-          { role: 'system', content: `Respond with terminal commands for ${platform} systems.` },
+          { role: 'system', content: `You respond with terminal commands for ${platform} systems.` },
           ...CHAT_TRAINING,
           { role: 'user', content: `${prompt}` },
         ],
