@@ -1,5 +1,10 @@
 # How
 
+![Build Status](https://github.com/ameddin73/how-ai/actions/workflows/release.yaml/badge.svg)
+[![NPM Version](http://img.shields.io/npm/v/how-ai.svg?style=flat)](https://www.npmjs.org/package/how-ai)
+[![NPM Downloads](https://img.shields.io/npm/dm/how-ai.svg?style=flat)](https://npmcharts.com/compare/how-ai?minimal=true)
+[![Install Size](https://packagephobia.now.sh/badge?p=how-ai)](https://packagephobia.now.sh/result?p=how-ai)
+
 Generate CLI commands and code snippets from natural language right in your terminal.
 
 ### Examples
@@ -31,31 +36,12 @@ public class CurrentDate {
 }
 ```
 
-### Who is this for?
-
-People who want an easy way to get complex CLI commands without Googling for hours or remembering
-a million query syntaxes.
-
-##### Who isn't this for?
-
-People who don't feel comfortable using OpenAI Codex or are concerned about
-[their data](https://openai.com/policies/api-data-usage-policies).
-
 ## Quickstart
+
+### Install
 
 ```shell
 npm install -g how-ai
-```
-
-## Usage
-
-```shell
-Usage: how [options]
-
-Options:
-  -c, --code <language>           generate code snippet instead of a command prompt
-  -v, --version                   print version information about how
-  -h, --help                      display help for command
 ```
 
 ### Running commands
@@ -99,7 +85,18 @@ to the language you want.
     return session
     ```
 
-### Correctness
+## Usage
+
+```shell
+Usage: how [options]
+
+Options:
+  -c, --code <language>           generate code snippet instead of a command prompt
+  -v, --version                   print version information about how
+  -h, --help                      display help for command
+```
+
+## Correctness
 
 How is backed by OpenAI GPT-3, a generative LLM. Generative language models are unreliable by nature,
 and may produce incorrect or invalid responses.
@@ -112,3 +109,8 @@ To see which model How uses, run
 ```shell
 how -v
 ```
+
+## Privacy
+
+This tool uses OpenAI APIs. View their
+[data policy here](https://openai.com/policies/api-data-usage-policies).
