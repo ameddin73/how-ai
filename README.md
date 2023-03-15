@@ -5,28 +5,28 @@ Generate CLI commands and code snippets from natural language right in your term
 ### Examples
 
 ```shell
-$ how get the cluster name of every aks cluster that has a nodepool size of 3
-$ az aks list --query "[?agentPoolProfiles[?count==\`3\`]].name"
-[
-  "cluster1",
-  "cluster2",
-]
+> how get current user
+$ whoami copied to clipboard!
+```
+
+```shell
+> how get the cluster name of every aks cluster that has a nodepool size of 3
+$ az aks list --query "[?agentPoolProfiles[?count==\`3\`]].name" copied to clipboard!
 ```
 
 ```java
-$ how print a random string --code java
-import java.util.Random;
+> how full program to print todays date --code java
+//importing the Date class from java.util package which is used to get the current date
+import java.util.Date;
 
-public class PrintRandomString {
+public class CurrentDate {
+    //Main method
     public static void main(String[] args) {
+        //create a Date object
+        Date date = new Date();
 
-  String[] strings = {"apples", "oranges", "pears", "bananas", "grapes"};
-
-  Random rand = new Random();
-
-  int randomNum = rand.nextInt(strings.length);
-
-  System.out.println("Random String: " + strings[randomNum]);
+        //print out current date
+        System.out.println(date);
     }
 }
 ```
@@ -41,26 +41,11 @@ a million query syntaxes.
 People who don't feel comfortable using OpenAI Codex or are concerned about
 [their data](https://openai.com/policies/api-data-usage-policies).
 
-This tool uses OpenAI GPT-3 as a remote backend and requires users to have an internet connection
-and OpenAI API key.
-
-> OpenAI API is free with [limits](#limitations) for personal users as of 03/11/2023.
-
 ## Quickstart
 
-1. Sign up for a free OpenAI platform account [here](https://platform.openai.com/overview).
-1. Get an OpenAI API key [here](https://platform.openai.com/account/api-keys).
-1. Install How
-
-    ```shell
-    npm install -g how-ai
-    ```
-
-1. Configure How with your API key.
-
-    ```shell
-    how -a <OpenAI API key>
-    ```
+```shell
+npm install -g how-ai
+```
 
 ## Usage
 
@@ -68,7 +53,6 @@ and OpenAI API key.
 Usage: how [options]
 
 Options:
-  -a, --api-key <OpenAI API key>  configure how to use your API key
   -c, --code <language>           generate code snippet instead of a command prompt
   -v, --version                   print version information about how
   -h, --help                      display help for command
@@ -79,14 +63,15 @@ Options:
 1. Invoke How with the command description.
 
     ```shell
-    how get current user
+    > how get current user
     ```
 
-1. Press `return` to run the command or `escape` to cancel.
+1. Paste the copied command into your terminal and execute.
 
     ```shell
-    $ how get current user
-    $ whoami
+    > how get current user
+    $ whoami copied to clipboard!
+    > whoami
     alex
     ```
 
@@ -96,8 +81,7 @@ Options:
 to the language you want.
 
     ```python
-
-    $ how -c python small function to initialize tensorflow
+    > how -c python small function to initialize tensorflow
     # import the tensorflow library
     import tensorflow as tf
 
@@ -115,37 +99,16 @@ to the language you want.
     return session
     ```
 
-## Limitations
-
-#### API Limits
-
-OpenAI strictly limits API requests on a per-model basis.
-[API limits for OpenAI](https://platform.openai.com/docs/guides/rate-limits).
-
-To see which model How uses, run
-
-```shell
-how -v
-```
-
-#### Envronment variables
-
-Executing the command directly from How doesn't enumerate environment variables. Instead,
-copy the command.
-
-```shell
-$ how print current user
-$ echo $USER
-$USER
-```
-
-How is designed to generate commands avoiding environment variables where possible, but doesn't
-always.
-
-#### Correctness
+### Correctness
 
 How is backed by OpenAI GPT-3, a generative LLM. Generative language models are unreliable by nature,
 and may produce incorrect or invalid responses.
 
 This tool can help with complex queries or act as a library
 of difficult to memorize commands, but is not a drop-in replacement for Google, documentation, and common sense.
+
+To see which model How uses, run
+
+```shell
+how -v
+```
