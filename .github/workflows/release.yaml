@@ -3,21 +3,14 @@ on:
     branches:
       - main
 jobs:
-  release-client:
+  release:
+    name: Semantic Release
     permissions:
       contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Release Client
-        uses: cycjimmy/semantic-release-action@v3
-        with:
-          branch: main
-          working_directory: ./how-ai
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Release Server
         uses: cycjimmy/semantic-release-action@v3
@@ -29,3 +22,12 @@ jobs:
             @semantic-release/git
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release Client
+        uses: cycjimmy/semantic-release-action@v3
+        with:
+          branch: main
+          working_directory: ./how-ai
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
