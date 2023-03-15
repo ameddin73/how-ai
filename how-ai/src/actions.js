@@ -21,14 +21,13 @@ Code Model: ${models.data.code}`);
 
 export async function code(language, prompt) {
   try {
-    const snippet = await axios.post({
-      url: `${SERVER_HOST}/api/HowAI?type=code`,
-      data: {
+    const response = await axios.post(
+      `${SERVER_HOST}/api/HowAI?type=code`,
+      {
         language,
         prompt
-      }
-    });
-    console.log(snippet);
+      });
+    console.log(response.data);
   } catch (err) {
     throw err;
   }
@@ -37,14 +36,14 @@ export async function code(language, prompt) {
 export async function command(prompt) {
   try {
     // Get command from OpenAI
-    var command = await axios.post({
-      url: `${SERVER_HOST}/api/HowAI?type=command`,
-      data: {
+    var response = await axios.post(
+      `${SERVER_HOST}/api/HowAI?type=command`,
+      {
         platform: os.platform(),
         prompt
-      }
-    });
-    command = extractCode(command);
+      },
+    );
+    const command = extractCode(response.data);
 
     // Create readline
     const rl = readline.createInterface({

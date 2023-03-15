@@ -4,7 +4,7 @@ import fs from 'fs';
 import axios from 'axios';
 import packageJson from '../package.json' assert { type: 'json' };
 
-export const SERVER_HOST = process.env["HOW_SERVER_HOST"]
+export const SERVER_HOST = process.env["HOW_SERVER_HOST"] || "https://how-ai-linux-function-app.azurewebsites.net"
 
 const homeDir = os.homedir();
 const configFileName = '.how-cli.json';
