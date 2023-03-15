@@ -101,4 +101,6 @@ resource "azurerm_linux_function_app" "how-ai" {
     "APPINSIGHTS_INSTRUMENTATIONKEY" = "${azurerm_application_insights.how-ai.instrumentation_key}"
     "APIKEY"                         = "@Microsoft.KeyVault(SecretUri=${data.azurerm_key_vault_secret.api-key.id})"
   }
+
+  daily_memory_time_quota = var.memory_quota
 }
