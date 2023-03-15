@@ -31,12 +31,11 @@
   "homepage": "https://github.com/ameddin73/how-ai#readme",
   "dependencies": {
     "@azure/functions": "^3.5.0",
-    "@types/node": "^18.15.2",
     "openai": "^3.2.1"
   },
   "devDependencies": {
     "@azure/functions": "^3.0.0",
-    "@types/node": "16.x",
+    "@types/node": "^18.15.3",
     "azure-functions-core-tools": "^4.x",
     "typescript": "^4.0.0"
   }
