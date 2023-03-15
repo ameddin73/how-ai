@@ -36,6 +36,7 @@ resource "azurerm_key_vault" "how-ai" {
     object_id = data.azurerm_client_config.current.object_id
 
     secret_permissions = [
+      "Get",
       "Set",
       "List",
       "Delete",
@@ -67,6 +68,11 @@ resource "azurerm_application_insights" "how-ai" {
   application_type    = "Node.JS"
 }
 
+data "azurerm_key_vault_secret" "api-key" {
+  name         = "APIKEY"
+  key_vault_id = azurerm_key_vault.how-ai.id
+}
+
 resource "azurerm_linux_function_app" "how-ai" {
   name                = "how-ai-linux-function-app"
   resource_group_name = azurerm_resource_group.how-ai.name
@@ -93,5 +99,6 @@ resource "azurerm_linux_function_app" "how-ai" {
 
   app_settings = {
     "APPINSIGHTS_INSTRUMENTATIONKEY" = "${azurerm_application_insights.how-ai.instrumentation_key}"
+    "APIKEY"                         = "@Microsoft.KeyVault(SecretUri=${data.azurerm_key_vault_secret.api-key.id})"
   }
 }
