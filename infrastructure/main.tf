@@ -60,6 +60,13 @@ resource "azurerm_role_assignment" "how-ai" {
   principal_id         = azurerm_user_assigned_identity.how-ai.principal_id
 }
 
+resource "azurerm_application_insights" "how-ai" {
+  name                = "how-ai-appinsights"
+  resource_group_name = azurerm_resource_group.how-ai.name
+  location            = azurerm_resource_group.how-ai.location
+  application_type    = "Node.JS"
+}
+
 resource "azurerm_linux_function_app" "how-ai" {
   name                = "how-ai-linux-function-app"
   resource_group_name = azurerm_resource_group.how-ai.name
@@ -80,5 +87,11 @@ resource "azurerm_linux_function_app" "how-ai" {
     application_stack {
       node_version = "16"
     }
+
+    app_service_logs {}
+  }
+
+  app_settings = {
+    "APPINSIGHTS_INSTRUMENTATIONKEY" = "${azurerm_application_insights.how-ai.instrumentation_key}"
   }
 }
