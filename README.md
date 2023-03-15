@@ -2,20 +2,20 @@
 
 # How
 
+Generate CLI commands and code snippets from natural language right in your terminal.
+
 [![NPM Version](http://img.shields.io/npm/v/how-ai.svg?style=flat)](https://www.npmjs.org/package/how-ai)
 [![NPM Downloads](https://img.shields.io/npm/dm/how-ai.svg?style=flat)](https://npmcharts.com/compare/how-ai?minimal=true)
-![License](https://img.shields.io/github/license/ameddin73/how-ai)
 [![Install Size](https://packagephobia.now.sh/badge?p=how-ai)](https://packagephobia.now.sh/result?p=how-ai)
-</br>
-![Build Status](https://github.com/ameddin73/how-ai/actions/workflows/release.yaml/badge.svg)
-[![Known Vulnerabilities](https://snyk.io/test/npm/how-ai/badge.svg)](https://snyk.io/test/npm/how-ai)
-[![Dependencies Status](https://img.shields.io/librariesio/github/ameddin73/how-ai)](https://libraries.io/npm/how-ai)
-
-Generate CLI commands and code snippets from natural language right in your terminal.
+![License](https://img.shields.io/github/license/ameddin73/how-ai)
+<!-- </br> -->
+<!-- ![Build Status](https://github.com/ameddin73/how-ai/actions/workflows/release.yaml/badge.svg) -->
+<!-- [![Known Vulnerabilities](https://snyk.io/test/npm/how-ai/badge.svg)](https://snyk.io/test/npm/how-ai) -->
+<!-- [![Dependencies Status](https://img.shields.io/librariesio/github/ameddin73/how-ai)](https://libraries.io/npm/how-ai) -->
 
 </div>
 
-### Examples
+## Examples
 
 ```shell
 > how get current user
