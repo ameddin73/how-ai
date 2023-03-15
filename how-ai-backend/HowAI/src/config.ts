@@ -2,7 +2,7 @@ import { ChatCompletionRequestMessage } from "openai";
 
 export const CHAT_MODEL = "gpt-3.5-turbo";
 export const CODE_MODEL = "text-davinci-003";
-export const API_KEY = process.env["API-KEY"];
+export const API_KEY = process.env["APIKEY"];
 
 export const CHAT_5_SHOT: Array<ChatCompletionRequestMessage> = [
   {
