@@ -38,6 +38,7 @@ jobs:
         uses: Azure/functions-action@v1
         id: fa
         with:
+          scm-do-build-during-deployment: true
           app-name: 'how-ai-linux-function-app'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
