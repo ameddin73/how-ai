@@ -37,6 +37,7 @@ export async function command(platform: string, prompt: string) {
       flags
     };
   } catch (err) {
+    console.log(err)
     throw err;
   }
 

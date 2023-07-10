@@ -18,10 +18,13 @@ jobs:
           branch: main
           working_directory: ./how-ai-backend
           extra_plugins: |
-            @semantic-release/commit-analyzer
+            @semantic-release/commit-analyzer@9.0.2
             @semantic-release/git
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Copy README
+        run: cp README.md how-ai/README.md
 
       - name: Release Client
         uses: cycjimmy/semantic-release-action@v3
